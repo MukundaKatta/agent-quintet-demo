@@ -1,6 +1,6 @@
 # agent-quintet-demo
 
-A small reference agent that uses all five [`@mukundakatta`](https://www.npmjs.com/~mukundakatta) agent-stack libraries together.
+A small reference agent that uses the [`@mukundakatta`](https://www.npmjs.com/~mukundakatta) agent-stack libraries together.
 
 | library | role in this demo |
 |---|---|
@@ -9,6 +9,11 @@ A small reference agent that uses all five [`@mukundakatta`](https://www.npmjs.c
 | `agentguard` | declares an egress policy and checks every outbound URL before the call |
 | `agentvet` | wraps each tool function; bad args throw a recoverable `ToolArgError` |
 | `agentsnap` | snapshots the tool-call trace for CI regression tests |
+
+> **Sibling library**: [`agenttrace`](https://github.com/MukundaKatta/agenttrace)
+> adds cost + latency tracking. It's Node-only at v0.1.0 (npm publish coming),
+> so this Python demo doesn't include it; the JS reference would wrap each
+> `measureLLM(...)` around your LLM call to get a per-step breakdown.
 
 ## Run it
 

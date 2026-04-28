@@ -1,0 +1,30 @@
+[project]
+name = "agent-quintet-demo"
+version = "0.1.0"
+description = "Reference agent showing the @mukundakatta agent-stack quintet composed in a real loop."
+requires-python = ">=3.11"
+authors = [{ name = "Mukunda Katta" }]
+license = { text = "MIT" }
+dependencies = [
+    "agentfit-py>=0.1.0",
+    "agentguard-firewall>=0.1.0",
+    "agentsnap-py>=0.1.0",
+    "agentvet-py>=0.1.0",
+    "agentcast-py>=0.1.0",
+    "google-genai>=0.8",
+    "pydantic>=2.7",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-asyncio>=0.23"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/quintet_demo"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

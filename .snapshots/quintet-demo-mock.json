@@ -1,0 +1,17 @@
+{
+  "steps": [
+    {
+      "step": 0,
+      "action": "search",
+      "args": {
+        "query": "rag"
+      },
+      "result": "RAG = retrieve-then-generate; pull docs, then answer with them in context."
+    },
+    {
+      "step": 1,
+      "action": "finish",
+      "answer": "RAG = retrieval-augmented generation."
+    }
+  ]
+}

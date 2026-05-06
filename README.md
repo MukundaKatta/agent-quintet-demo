@@ -1,5 +1,8 @@
 # agent-quintet-demo
 
+📖 **[Read the story behind this stack on DEV.to](https://dev.to/mukundakatta/i-built-5-tiny-libraries-to-stop-my-ai-agents-from-misbehaving-in-production-3oni)**
+
+
 A small reference agent that uses the [`@mukundakatta`](https://www.npmjs.com/~mukundakatta) agent-stack libraries together.
 
 | library | role in this demo |

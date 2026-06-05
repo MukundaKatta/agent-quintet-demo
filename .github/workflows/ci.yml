@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build & compile check
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Upgrade pip tooling
+        run: python -m pip install --upgrade pip
+
+      - name: Byte-compile sources
+        # Validates that every module is syntactically importable without
+        # requiring the private agent-stack dependencies to be installed.
+        run: python -m compileall -q src tests
+
+      - name: Validate project metadata
+        run: |
+          python -m pip install tomli
+          python - <<'PY'
+          try:
+              import tomllib as toml
+          except ModuleNotFoundError:
+              import tomli as toml
+          with open("pyproject.toml", "rb") as fh:
+              data = toml.load(fh)
+          assert data["project"]["name"], "project.name missing"
+          print("pyproject.toml OK:", data["project"]["name"])
+          PY
